@@ -1,0 +1,15 @@
+.timer {
+    width: 350px;
+}
+
+#minutes {
+    float: left;
+    font-size: 200px;
+    font-weight: bold;
+}
+
+#seconds {
+    float: left;
+    font-size: 80px;
+    padding: 110px 0 0px 30px;
+}

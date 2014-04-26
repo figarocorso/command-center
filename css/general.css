@@ -1,0 +1,18 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: #888888;
+    text-shadow: 1px 1px 1px #FFFFFF;
+    background: url("../img/groovepaper.png") repeat;
+    padding-bottom: 1px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.pomodoro {
+    padding-left: 20px;
+    background: rgba(255,255,255,0.35);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 2px 12px #DDDDDD;
+    border-radius: 6px;
+}
