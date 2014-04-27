@@ -16,3 +16,11 @@ body {
     box-shadow: 0 2px 12px #DDDDDD;
     border-radius: 6px;
 }
+
+ul, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
