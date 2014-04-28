@@ -16,8 +16,18 @@
     padding: 20px 0 0px 45px;
 }
 
+#hideConfiguration {
+    background: #EEE;
+    cursor: pointer;
+    height: 20px;
+}
+
+.over {
+    background: #CCC !important;
+}
+
 .interval-settings {
-    height: 60px;
+    height: 85px;
 }
 
 .interval-settings table tr td {
@@ -38,6 +48,7 @@
 #pomodoro-buttons a {
     color: #888;
     font-size: 14px;
+    display: block;
 }
 
 #pomodoro-buttons a:hover {

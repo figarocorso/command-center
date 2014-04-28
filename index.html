@@ -16,15 +16,19 @@
                 <div id="seconds">59</div>
                 <br style="clear: left;" />
                 <div id="pomodoro-buttons">
-                    <a href="#" id="start" onClick="startPomodoro()">Start</a><br />
-                    <a href="#" id="end" onClick="endPomodoro()">End</a><br />
-                    <a href="#" id="minibreak" onClick="startMiniBreak()">Mini Break</a><br />
-                    <a href="#" id="longbreak" onClick="startLongBreak()">Long Break</a><br />
+                    <a href="#" id="start" onClick="startPomodoro()">Start pomodoro</a>
+                    <a href="#" id="end" style="display: none;" onClick="endPomodoro()">End</a>
+                    <a href="#" id="minibreak" onClick="startMiniBreak()">Mini Break</a>
+                    <a href="#" id="longbreak" onClick="startLongBreak()">Long Break</a>
+                    <a href="#" id="configurePomodoro" onClick="showConfiguration()">Configure</a>
                 </div>
                 <br style="clear: left;" />
             </div>
-            <div class="interval-settings">
+            <div class="interval-settings" style="display:none;">
                 <table>
+                <tr>
+                    <td id="hideConfiguration" colspan=3 onClick="hideConfiguration()" onMouseOver="$('#hideConfiguration').toggleClass('over');" onMouseLeave="$('#hideConfiguration').toggleClass('over');"><img src="img/down-arrow.png" height="10px"/></td>
+                </tr>
                 <tr>
                     <td><span id="pomodoro-value">0</span>' pomodoro</td>
                     <td><span id="minibreak-value">0</span>' minibreak</td>
@@ -33,7 +37,7 @@
                 <tr>
                     <td><input type="range" name="pomodoroRange" id="pomodoroRange" min="0" max="60" step="5" value="25" onChange="updatePomodoroDisplay('pomodoro', pomodoroRange.value)"></td>
                     <td><input type="range" name="minibreakRange" id="minibreakRange" min="0" max="10" step="1" value="5" onChange="updatePomodoroDisplay('minibreak', minibreakRange.value)"></td>
-                    <td><input type="range" name="longbreakRange" id="longbreakRange" min="0" max="60" step="10" value="30" onChange="updatePomodoroDisplay('longbreak', longbreakRange.value)"></td>
+                    <td><input type="range" name="longbreakRange" id="longbreakRange" min="0" max="60" step="5" value="15" onChange="updatePomodoroDisplay('longbreak', longbreakRange.value)"></td>
                 </tr>
                 </table>
             </div>

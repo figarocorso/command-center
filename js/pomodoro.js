@@ -8,21 +8,44 @@ $(document).ready(function (){
 
 function startPomodoro() {
     setAndStart($('#pomodoro-value').text() - 1);
+    showEndAndHideStarts();
 }
 
 function endPomodoro() {
     window.clearInterval(secondUpdater);
+    $('#end').hide(50,
+        function () {$('#start').show(50,
+        function () {$('#minibreak').show(50,
+        function () {$('#longbreak').show(50); $('#longbreak').css('display', 'block');})})});
 }
 
 function startMiniBreak() {
     setAndStart($('#minibreak-value').text() - 1);
+    showEndAndHideStarts();
 }
 
 function startLongBreak() {
     setAndStart($('#longbreak-value').text() - 1);
+    showEndAndHideStarts();
+}
+
+function showConfiguration() {
+    $('.interval-settings').show(500);
+    $('#configurePomodoro').hide(500);
+}
+
+function hideConfiguration() {
+    $('.interval-settings').hide(500);
+    $('#configurePomodoro').show(500);
 }
 
 /* Helper functions */
+function showEndAndHideStarts() {
+    $('#longbreak').hide(100,
+        function (){ $('#minibreak').hide(50,
+        function (){ $('#start').hide(50,
+        function (){ $('#end').show(50); $('#end').css('display', 'block');})})});
+}
 
 function setAndStart(minutes) {
     if (minutes < 10) {
