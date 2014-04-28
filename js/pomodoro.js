@@ -17,6 +17,7 @@ function endPomodoro() {
         function () {$('#start').show(50,
         function () {$('#minibreak').show(50,
         function () {$('#longbreak').show(50); $('#longbreak').css('display', 'block');})})});
+    $('#minutes').text(document.getElementById('pomodoroRange').value - 1);
 }
 
 function startMiniBreak() {
@@ -70,7 +71,7 @@ function updatePomodoroDisplay(display, minutes) {
 function decreaseSeconds() {
     $('#seconds').text($('#seconds').text() - 1);
     if ($('#seconds').text() < 10) { $('#seconds').text("0" + $('#seconds').text()); }
-    if (lastMinute()  && minuteChange()) { pomodoroEnd(); }
+    if (lastMinute()  && minuteChange()) { pomodoroHasEnded(); }
 }
 
 function updateMinutes() {
@@ -81,8 +82,8 @@ function updateMinutes() {
     }
 }
 
-function pomodoroEnd() {
-    console.log("Current pomodoro has ended.");
+function pomodoroHasEnded() {
+    endPomodoro();
 }
 
 
