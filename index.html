@@ -11,18 +11,22 @@
 <body>
     <div class="container">
         <div class="pomodoro">
+            <div id="youtubeVideo">
+                <iframe id="youtubeFrame" src="" width="350" height="200">
+                </iframe>
+            </div>
             <div class="timer">
                 <div id="minutes">24</div>
                 <div id="seconds">59</div>
                 <br style="clear: left;" />
                 <div id="pomodoro-buttons">
                     <a href="#" id="start" onClick="startPomodoro()">Start pomodoro</a>
-                    <a href="#" id="end" style="display: none;" onClick="endPomodoro()">End</a>
                     <a href="#" id="minibreak" onClick="startMiniBreak()">Mini Break</a>
                     <a href="#" id="longbreak" onClick="startLongBreak()">Long Break</a>
-                    <a href="#" id="configurePomodoro" onClick="showConfiguration()">Configure</a>
+                    <a href="#" id="end" style="display: none;" onClick="endPomodoro()">End</a>
                 </div>
                 <br style="clear: left;" />
+                <a href="#" id="configurePomodoro" onClick="showConfiguration()"><img style="margin:-20px 0 0 -12px;" src="img/settings.png" width="15"/></a>
             </div>
             <div class="interval-settings" style="display:none;">
                 <table>
