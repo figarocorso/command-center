@@ -42,6 +42,8 @@ function hideConfiguration() {
 
 /* Helper functions */
 function showEndAndHideStarts() {
+    $('#youtubeVideo').hide(400);
+    $('#youtubeFrame').attr('src', '');
     $('#longbreak').hide(100,
         function (){ $('#minibreak').hide(50,
         function (){ $('#start').hide(50,
@@ -84,6 +86,8 @@ function updateMinutes() {
 
 function pomodoroHasEnded() {
     endPomodoro();
+    $('#youtubeVideo').show(400);
+    $('#youtubeFrame').attr('src', 'http://www.youtube.com/embed/_uYHNWc-UCg?rel=0&autoplay=1');
 }
 
 
