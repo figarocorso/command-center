@@ -5,7 +5,7 @@
  */
 class RestServer {
     public function handleRequest() {
-        echo("I am a big cow");
+        return("ok");
     }
 }
 ?>
