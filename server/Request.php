@@ -11,6 +11,14 @@ class Request {
     }
 
     /* Getters */
+    public function success() {
+        $success = True and $this->action();
+        $success = $success and $this->module();
+        $success = $success and $this->method();
+
+        return $success;
+    }
+
     public function action() {
         return $this->action;
     }
@@ -29,7 +37,12 @@ class Request {
 
     /* Parsing functions */
     private function parseAction() {
-        return isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : False;
+        if (isset($_SERVER['REQUEST_METHOD'])) {
+            $action = $_SERVER['REQUEST_METHOD'];
+            return strtolower($action);
+        }
+
+        return False;
     }
 
     private function parsePath() {
@@ -39,7 +52,7 @@ class Request {
 
         $slicedUri = explode('/', $_SERVER['REQUEST_URI']);
         //FIXME: Hardcoded!
-        return array($slicedUri[3], $slicedUri[4]);
+        return array(ucfirst($slicedUri[3]), ucfirst($slicedUri[4]));
     }
 
     private function parseParameters() {
@@ -87,7 +100,7 @@ class Request {
 
         if($decoded) {
             foreach($decoded as $parameterName => $parameterValue) {
-                $processed[$parameterName] = $parameterValue;
+                $processed[strtolower($parameterName)] = $parameterValue;
             }
         }
 
