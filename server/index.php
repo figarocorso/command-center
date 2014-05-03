@@ -8,6 +8,7 @@
         if (preg_match('/[a-zA-Z]+Controller$/', $classname)) {
             include __DIR__ . '/controllers/' . $classname . '.php';
             return true;
+        }
     }
 
     // Handle the request
