@@ -35,6 +35,10 @@ class Request {
         return $this->parameters;
     }
 
+    public function format() {
+        return $this->format;
+    }
+
     /* Parsing functions */
     private function parseAction() {
         if (isset($_SERVER['REQUEST_METHOD'])) {
@@ -60,6 +64,9 @@ class Request {
 
         $body = file_get_contents("php://input");
         $contentType = $this->getContentType();
+
+        $this->format = "json";
+        $decodedParameters = array();
 
         if ($contentType == "application/json") {
                 $decodedParameters = json_decode($body);

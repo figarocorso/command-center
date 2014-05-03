@@ -1,9 +1,12 @@
 var secondUpdater;
 
 $(document).ready(function (){
-    updatePomodoroDisplay('pomodoro', $('#pomodoroRange').attr('value'));
-    updatePomodoroDisplay('minibreak', $('#minibreakRange').attr('value'));
-    updatePomodoroDisplay('longbreak', $('#longbreakRange').attr('value'));
+    $.get( "server/pomodoros/intervals", function( data ) {
+        updatePomodoroDisplay('pomodoro', data["pomodoro"]);
+        updatePomodoroDisplay('minibreak', data["minibreak"]);
+        updatePomodoroDisplay('longbreak', data["longbreak"]);
+    });
+
 });
 
 function startPomodoro() {

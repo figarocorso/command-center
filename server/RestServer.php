@@ -11,9 +11,9 @@ class RestServer {
         $request = new Request();
         $this->exitIfBadRequest($request);
         $result = $this->invokeControllerMethod($request);
-        var_dump($result);
+        $this->returnResults($request, $result);
 
-        return("ok");
+        return $result;
     }
 
     private function exitIfBadRequest($request) {
@@ -36,6 +36,14 @@ class RestServer {
         }
 
         return False;
+    }
+
+    private function returnResults($request, $results) {
+        $viewName = ucfirst($request->format()) . 'View';
+        if(class_exists($viewName)) {
+            $view = new $viewName();
+            $view->render($results);
+        }
     }
 }
 ?>
