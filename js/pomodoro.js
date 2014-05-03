@@ -1,13 +1,15 @@
 var secondUpdater;
 
 $(document).ready(function (){
-    $.get( "server/pomodoros/intervals", function( data ) {
-        updatePomodoroDisplay('pomodoro', data["pomodoro"]);
-        updatePomodoroDisplay('minibreak', data["minibreak"]);
-        updatePomodoroDisplay('longbreak', data["longbreak"]);
-    });
-
+    $.get( "server/pomodoros/intervals", loadInitialData);
 });
+
+function loadInitialData(data) {
+    updatePomodoroDisplay('pomodoro', data["pomodoro"]);
+    updatePomodoroDisplay('minibreak', data["minibreak"]);
+    updatePomodoroDisplay('longbreak', data["longbreak"]);
+    $('#minutes').text(data["pomodoro"] - 1);
+}
 
 function startPomodoro() {
     setAndStart($('#pomodoro-value').text() - 1);
@@ -71,6 +73,7 @@ function countDown() {
 
 function updatePomodoroDisplay(display, minutes) {
     $('#' + display + '-value').text(minutes);
+    $('#' + display + 'Range').attr('value', minutes);
 }
 
 function decreaseSeconds() {

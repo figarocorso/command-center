@@ -2,7 +2,7 @@
 class PomodorosController
 {
     public function __construct() {
-        $this->pomodoro = "10";
+        $this->pomodoro = "25";
         $this->minibreak = "5";
         $this->longbreak = "15";
     }
