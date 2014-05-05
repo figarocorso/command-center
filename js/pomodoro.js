@@ -11,8 +11,8 @@ function loadInitialData(data) {
     $('#minutes').text(data["pomodoro"] - 1);
 }
 
-function startPomodoro() {
-    setAndStart($('#pomodoro-value').text() - 1);
+function startCountdown($timer) {
+    setAndStart($('#' + $timer + '-value').text() - 1);
     showEndAndHideStarts();
 }
 
@@ -23,16 +23,6 @@ function endPomodoro() {
         function () {$('#minibreak').show(50,
         function () {$('#longbreak').show(50); $('#longbreak').css('display', 'block');})})});
     $('#minutes').text(document.getElementById('pomodoroRange').value - 1);
-}
-
-function startMiniBreak() {
-    setAndStart($('#minibreak-value').text() - 1);
-    showEndAndHideStarts();
-}
-
-function startLongBreak() {
-    setAndStart($('#longbreak-value').text() - 1);
-    showEndAndHideStarts();
 }
 
 function showConfiguration() {
