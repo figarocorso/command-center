@@ -9,6 +9,8 @@ class DbConfiguration {
         $this->username = 'root';
         $this->password = 'foobar';
         $this->database = 'commandcenter';
+
+        $this->table = 'command_values';
     }
 }
 ?>
