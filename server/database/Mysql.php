@@ -18,16 +18,19 @@ class Mysql extends DbConfiguration {
         $this->mysqli->close();
     }
 
-    public function dbDisconnect() {
-        $this->mysqli = NULL;
-    }
-
     public function getValue($key) {
         $row = $this->mysqli->query("SELECT command_value FROM command_values WHERE command_key='$key'");
         $result = $row->num_rows ? $row->fetch_array() : $this->insertInitialValue($key);
 
         return $result["command_value"];
     }
+
+    public function setValue($key, $value) {
+        $table = $this->table;
+        $success = $this->mysqli->query("UPDATE $table SET command_value='$value' WHERE command_key='$key'");
+    }
+
+    /* Private helper methods */
 
     private function insertInitialValue($key) {
         $initials = parse_ini_file('initials.ini');
