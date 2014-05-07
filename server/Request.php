@@ -53,8 +53,8 @@ class Request {
         if (! isset($_SERVER['REQUEST_URI'])) {
             return array(False, False);
         }
-
-        $slicedUri = explode('/', $_SERVER['REQUEST_URI']);
+        $uri = str_replace('?', '/', $_SERVER['REQUEST_URI']);
+        $slicedUri = explode('/', $uri);
         //FIXME: Hardcoded!
         return array(ucfirst($slicedUri[3]), ucfirst($slicedUri[4]));
     }
@@ -71,7 +71,7 @@ class Request {
         if ($contentType == "application/json") {
                 $decodedParameters = json_decode($body);
                 $this->format = "json";
-        } else if ($contentType == "application/x-www-form-urlencoded") {
+        } else {
                 parse_str($body, $decodedParameters);
                 $this->format = "html";
         }
