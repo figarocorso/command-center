@@ -56,7 +56,7 @@ class Request {
         $uri = str_replace('?', '/', $_SERVER['REQUEST_URI']);
         $slicedUri = explode('/', $uri);
         //FIXME: Hardcoded!
-        return array(ucfirst($slicedUri[3]), ucfirst($slicedUri[4]));
+        return array(ucfirst($slicedUri[2]), ucfirst($slicedUri[3]));
     }
 
     private function parseParameters() {
