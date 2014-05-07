@@ -28,6 +28,8 @@ class Mysql extends DbConfiguration {
     public function setValue($key, $value) {
         $table = $this->table;
         $success = $this->mysqli->query("UPDATE $table SET command_value='$value' WHERE command_key='$key'");
+
+        return $success;
     }
 
     /* Private helper methods */
