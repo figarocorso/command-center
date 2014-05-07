@@ -1,7 +1,7 @@
 var secondUpdater;
 
 $(document).ready(function (){
-    $.get( "server/pomodoros/intervals", loadInitialData);
+    $.get( "server/pomodoros/intervals", loadInitialData, "json");
 });
 
 function loadInitialData(data) {
@@ -59,6 +59,11 @@ function setAndStart(minutes) {
 function countDown() {
     decreaseSeconds();
     updateMinutes();
+}
+
+function updateTimerValue(timer, value) {
+    $.post( "server/pomodoros/interval", {'timer': timer, 'value': value});
+    updatePomodoroDisplay(timer, value);
 }
 
 function updatePomodoroDisplay(display, minutes) {

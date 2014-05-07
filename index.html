@@ -39,9 +39,9 @@
                     <td><span id="longbreak-value">0</span>' longbreak</td>
                 <tr>
                 <tr>
-                    <td><input type="range" name="pomodoroRange" id="pomodoroRange" min="0" max="60" step="5" value="25" onChange="updatePomodoroDisplay('pomodoro', pomodoroRange.value)"></td>
-                    <td><input type="range" name="minibreakRange" id="minibreakRange" min="0" max="10" step="1" value="5" onChange="updatePomodoroDisplay('minibreak', minibreakRange.value)"></td>
-                    <td><input type="range" name="longbreakRange" id="longbreakRange" min="0" max="60" step="5" value="15" onChange="updatePomodoroDisplay('longbreak', longbreakRange.value)"></td>
+                    <td><input type="range" name="pomodoroRange" id="pomodoroRange" min="0" max="60" step="5" onChange="updateTimerValue('pomodoro', pomodoroRange.value)"></td>
+                    <td><input type="range" name="minibreakRange" id="minibreakRange" min="0" max="10" step="1" onChange="updateTimerValue('minibreak', minibreakRange.value)"></td>
+                    <td><input type="range" name="longbreakRange" id="longbreakRange" min="0" max="60" step="5" onChange="updateTimerValue('longbreak', longbreakRange.value)"></td>
                 </tr>
                 </table>
             </div>
