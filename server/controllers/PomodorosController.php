@@ -1,19 +1,21 @@
 <?php
+
+require_once("database/Mysql.php");
+
 class PomodorosController
 {
-    public function __construct() {
-        $this->pomodoro = "25";
-        $this->minibreak = "5";
-        $this->longbreak = "15";
-    }
-
     public function getIntervals($request) {
+        $mysql = new Mysql();
+
         $intervals = array();
-        $intervals["pomodoro"] = $this->pomodoro;
-        $intervals["minibreak"] = $this->minibreak;
-        $intervals["longbreak"] = $this->longbreak;
+        $intervals["pomodoro"] = $mysql->getValue("pomodoro");
+        $intervals["minibreak"] = $mysql->getValue("minibreak");
+        $intervals["longbreak"] = $mysql->getValue("longbreak");
+
+        unset($mysql);
 
         return $intervals;
     }
+
 }
 ?>
