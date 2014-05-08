@@ -4,6 +4,10 @@
  */
 
 class Request {
+    // Update this constant depending on the REST server subfolder
+    // We will ignore the previous content of the REQUEST_URI
+    const SERVER_KEYWORD = "server";
+
     public function __construct() {
         $this->action = $this->parseAction();
         list($this->module, $this->method) = $this->parsePath();
@@ -53,10 +57,10 @@ class Request {
         if (! isset($_SERVER['REQUEST_URI'])) {
             return array(False, False);
         }
-        $uri = str_replace('?', '/', $_SERVER['REQUEST_URI']);
-        $slicedUri = explode('/', $uri);
-        //FIXME: Hardcoded!
-        return array(ucfirst($slicedUri[2]), ucfirst($slicedUri[3]));
+
+        list($module, $method) = $this->processRequestUri($_SERVER['REQUEST_URI']);
+
+        return array(ucfirst($module), ucfirst($method));
     }
 
     private function parseParameters() {
@@ -82,6 +86,17 @@ class Request {
     }
 
     /* Helper functions */
+
+    private function processRequestUri($uri) {
+        $beginning = strpos($_SERVER['REQUEST_URI'], self::SERVER_KEYWORD);
+        $beginning += strlen(self::SERVER_KEYWORD) + 1;
+
+        $uri = str_replace('?', '/', substr($uri, $beginning));
+        $slicedUri = explode('/', $uri);
+
+        return array(strtolower($slicedUri[0]), strtolower($slicedUri[1]));
+    }
+
     private function parseGetParameters() {
         $parameters = array();
 
