@@ -1,7 +1,7 @@
 <?php
 /**
  * This database classes need a database with these tables:
- * CREATE TABLE command_values (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, command_key VARCHAR(255), command_value VARCHAR(255));
+ * CREATE TABLE command_values (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, command_key VARCHAR(255), command_value BLOB);
  */
 class DbConfiguration {
     function __construct() {
