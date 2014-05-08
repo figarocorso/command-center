@@ -1,0 +1,19 @@
+.menu-toggler {
+    background: #EEE;
+    cursor: pointer;
+    height: 20px;
+    text-align: center;
+}
+
+.menu-toggler:hover {
+    background: #CCC !important;
+}
+
+.menu {
+    display: none;
+    padding-bottom: 10px;
+}
+
+#showMenuArrow {
+    margin-top: 5px;
+}

@@ -9,6 +9,9 @@ body {
     margin-right: 20px;
 }
 
+.menu-container {
+}
+
 .pomodoro {
     padding-left: 20px;
     background: rgba(255,255,255,0.35);
