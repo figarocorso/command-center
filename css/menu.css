@@ -11,8 +11,28 @@
 
 .menu {
     display: none;
-    padding-bottom: 10px;
 }
+
+.menu ul li {
+    cursor: pointer;
+    float: left;
+    width: 140px;
+}
+
+.menu ul li ul {
+    padding: 0px;
+    display: none;
+}
+
+.menu ul li:hover ul {
+    display: block;
+}
+
+.menu ul li ul li {
+    clear: left;
+    margin-top: 5px;
+}
+
 
 #showMenuArrow {
     margin-top: 5px;
