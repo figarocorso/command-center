@@ -10,6 +10,7 @@ body {
 }
 
 .menu-container {
+    text-align: center;
 }
 
 .pomodoro {
@@ -26,4 +27,12 @@ ul, li {
 
 a, a:hover, a:visited {
     text-decoration: none;
+}
+
+.clear-left {
+    clear: left;
+}
+
+.separator {
+    height: 10px;
 }

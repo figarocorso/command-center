@@ -3,17 +3,28 @@
     cursor: pointer;
     height: 20px;
     text-align: center;
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 2px 12px #DDDDDD;
+    border-radius: 6px;
+    margin-bottom: -10px;
 }
 
 .menu-toggler:hover {
-    background: #CCC !important;
+    background: #DDD !important;
 }
 
 .menu {
     display: none;
+    width: 100%;
+}
+
+.menu-entry {
+    color: #777;
+    font-weight: bold;
 }
 
 .menu ul li {
+    background: url("../img/menu_pattern.png") repeat;
     font-size: 18px;
     cursor: pointer;
     float: left;
@@ -23,6 +34,7 @@
 .menu ul li ul {
     padding: 0px;
     display: none;
+    font-size: 17px;
 }
 
 .menu ul li:hover ul {
