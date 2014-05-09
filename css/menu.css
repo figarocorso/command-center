@@ -14,9 +14,10 @@
 }
 
 .menu ul li {
+    font-size: 18px;
     cursor: pointer;
     float: left;
-    width: 140px;
+    width: 180;
 }
 
 .menu ul li ul {
@@ -33,6 +34,19 @@
     margin-top: 5px;
 }
 
+.menu ul li ul li a:hover {
+    text-decoration: underline;
+}
+
+.menu ul li ul li a:visited {
+    text-decoration: none;
+    color: #888;
+}
+
+.menu ul li ul li a {
+    text-decoration: none;
+    color: #888;
+}
 
 #showMenuArrow {
     margin-top: 5px;
