@@ -13,12 +13,22 @@ body {
     text-align: center;
 }
 
-.pomodoro {
-    padding-left: 20px;
+.module {
     background: rgba(255,255,255,0.35);
     border: 1px solid rgba(255,255,255,0.6);
     box-shadow: 0 2px 12px #DDDDDD;
     border-radius: 6px;
+    padding: 0.5%;
+}
+
+.pomodoro {
+    width: 48%;
+    float: left;
+}
+
+.subtasks {
+    float: right;
+    width: 48%;
 }
 
 ul, li {
