@@ -29,6 +29,17 @@ body {
 .subtasks {
     float: right;
     width: 48%;
+    overflow-y: auto;
+    height: 200px;
+}
+
+.button {
+    background: #EEE;
+    padding: 5px 10px 5px 10px;
+    color: #666;
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 ul, li {
