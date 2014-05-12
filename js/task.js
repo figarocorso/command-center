@@ -4,16 +4,29 @@ $(document).ready(function (){
 
 function writeTaskTitle(data) {
     console.log(data);
-    if (!data) {
-        showInputTaskTitle();
+    if (data) {
+        taskTitleInput = showTaskTitle(data);
     } else {
-        showTaskTitle();
+        taskTitleInput = showInputTaskTitle();
     }
+
+    $('#taskTitle').append(taskTitleInput);
 }
 
 
 /* Task title */
-function showInputTaskTitle() {
-    taskTitleInput = "<label><input type='text' class='input-text' name='email' id='email'><span class='button'>Start!</span></label>";
-    $('#taskTitle').append(taskTitleInput);
+function showInputTaskTitle(taskTitle) {
+    inputValue = taskTitle ? taskTitle : "";
+    return "<label><input type='text' class='input-text' name='email' id='email' value='" + inputValue + "'><span class='button'>Start!</span></label>";
+}
+
+function showTaskTitle(data) {
+    $titleDiv =  "<h1>";
+    $titleDiv +=    data;
+    $titleDiv += "<span id='editTask' class='taskActionButton'>";
+    $titleDiv += "[editar]";
+    $titleDiv += "</span>";
+    $titleDiv += "</h1>";
+
+    return $titleDiv;
 }
