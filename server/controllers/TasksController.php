@@ -9,5 +9,18 @@ class TasksController
 
         return $mysql->getValue("tasktitle");
     }
+
+    public function postTasktitle($request) {
+        $parameters = $request->parameters();
+
+        if (!isset($parameters['tasktitle'])) {
+            return False;
+        }
+
+        $mysql = new Mysql();
+        $mysql->setValue("tasktitle", $parameters['tasktitle']);
+
+        return $mysql->getValue("tasktitle");
+    }
 }
 ?>
