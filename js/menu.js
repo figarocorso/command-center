@@ -1,6 +1,6 @@
 function showMenu() {
     changeArrow();
-    $(".menu").toggle(100);
+    $(".menu").slideToggle(100);
 }
 
 function changeArrow() {
