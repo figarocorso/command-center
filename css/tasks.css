@@ -13,14 +13,3 @@
     width: 80%;
     margin: 0px 1% 0px 1%;
 }
-
-.taskActionButton {
-    margin-left: 10px;
-    vertical-align: middle;
-    opacity: .5;
-    cursor: pointer;
-}
-
-.taskActionButton:hover  {
-    opacity: .9;
-}

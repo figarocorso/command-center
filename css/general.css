@@ -57,3 +57,40 @@ a, a:hover, a:visited {
 .separator {
     height: 10px;
 }
+
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    background-image: url("../img/icons.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+}
+
+.icon-remove {
+    background-position: -312px 0;
+}
+
+.icon-save{
+    background-position: -96px -24px;
+}
+
+.task-action {
+    padding-left: 7px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    opacity: .4;
+    filter: alpha(opacity=20);
+    -webkit-appearance: none;
+}
+
+.task-action:hover, .task-action:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .6;
+    filter: alpha(opacity=60);
+}

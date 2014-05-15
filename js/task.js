@@ -16,11 +16,15 @@ function showInputTaskTitle(taskTitle) {
     inputValue = taskTitle ? taskTitle : "";
 
     inputString = "";
+    inputString += "<form name='taskTitleForm' action='javascript:setTaskTitle()'>";
     inputString += "<label>";
-    inputString += "<input type='text' class='input-text' name='email' id='taskTitleInput' ";
+    inputString += "<input type='text' class='input-text' name='tasktitle' id='taskTitleInput' ";
     inputString += "value='" + inputValue + "'>";
-    inputString += "<span class='button' onClick='setTaskTitle()'>Set!</span>";
+    inputString += "<button type='button' class='task-action' onClick='setTaskTitle()'>";
+    inputString += "<i class='icon-save'></i>";
+    inputString += "</button>";
     inputString += "</label>";
+    inputString += "</form>";
 
     $('#taskTitle').html(inputString);
 
@@ -33,9 +37,9 @@ function showTaskTitle(data) {
     titleDiv += "<span onClick=\"showInputTaskTitle(\'" + data + "\')\">";
     titleDiv +=    data;
     titleDiv += "</span>";
-    titleDiv += "<span id='completeTask' class='taskActionButton'>";
-    titleDiv += "<img src='img/delete.png' width='15px' onClick='completeTask()'/>";
-    titleDiv += "</span>";
+    titleDiv += "<button type='button' class='task-action'>";
+    titleDiv += "<i class='icon-remove' onClick='completeTask()'></i>";
+    titleDiv += "</button>";
     titleDiv += "</h1>";
 
     $('#taskTitle').html(titleDiv);
