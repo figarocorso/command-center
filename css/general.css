@@ -24,13 +24,21 @@ body {
 .pomodoro {
     width: 48%;
     float: left;
+    height: 200px;
 }
 
 .subtasks {
+    float: left;
+    width: 48%;
+    overflow-y: auto;
+    height: 46%;
+}
+
+.notes {
     float: right;
     width: 48%;
     overflow-y: auto;
-    height: 200px;
+    height: 92%;
 }
 
 .button {
