@@ -81,8 +81,27 @@ a, a:hover, a:visited {
     background-position: -312px 0;
 }
 
-.icon-save{
+.icon-save {
     background-position: -96px -24px;
+}
+
+.icon-undone {
+    background-position: -288px 0px;
+    opacity: .2;
+}
+
+.icon-undone:hover {
+    opacity: .6;
+}
+
+.icon-done {
+    background-position: -288px 0px;
+    opacity: 1;
+}
+
+.icon-done:hover {
+    background-position: -288px 0px;
+    opacity: .4;
 }
 
 .task-action {

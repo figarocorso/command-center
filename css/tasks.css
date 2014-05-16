@@ -13,3 +13,12 @@
     width: 80%;
     margin: 0px 1% 0px 1%;
 }
+
+.tasks ul {
+    padding: 5px 0px 0px 15px;
+    margin: 0px;
+}
+.tasks ul li {
+    font-size: 16px;
+    padding: 3px 0px;
+}

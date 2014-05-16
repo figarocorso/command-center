@@ -1,17 +1,13 @@
 $(document).ready(function (){
     $.get( "server/tasks/tasktitle", writeTaskTitle, "json");
+    $.get( "server/tasks/subtasks", writeSubTasks, "json");
 });
 
+/* Task title */
 function writeTaskTitle(data) {
-    if (data) {
-        showTaskTitle(data);
-    } else {
-        showInputTaskTitle();
-    }
+    if (data) showTaskTitle(data); else showInputTaskTitle();
 }
 
-
-/* Task title */
 function showInputTaskTitle(taskTitle) {
     inputValue = taskTitle ? taskTitle : "";
 
@@ -52,6 +48,43 @@ function setTaskTitle() {
     $.post( "server/tasks/tasktitle", {'taskTitle': taskTitle}, writeTaskTitle, "json");
 }
 
+/* Subtasks management */
+function writeSubTasks(data) {
+    subtasksHtml = "";
+    subtasksHtml += "<ul>";
+    for (subtask in data) {
+        subtasksHtml += "<li>";
+        subtasksHtml += subtaskDoneIcon(subtask, data[subtask]["done"]);
+        subtasksHtml += "<span>";
+        subtasksHtml += data[subtask]["name"];
+        subtasksHtml += "</span>";
+        subtasksHtml += deleteSubtaskIcon(subtask);
+        subtasksHtml += "</li>";
+    }
+    subtasksHtml += "</ul>";
+
+    $('#subTasks').html(subtasksHtml);
+}
+
+function subtaskDoneIcon(taskNumber, done) {
+    button = "";
+
+    button += "<button type='button' class='task-action'>";
+    button += "<i class='icon-" + done + "' onClick='completeSubtask(" + taskNumber + ")'></i>";
+    button += "</button>";
+
+    return button;
+}
+
+function deleteSubtaskIcon(taskNumber) {
+    button = "";
+
+    button += "<button type='button' class='task-action'>";
+    button += "<i class='icon-remove' onClick='deleteSubtask(" + taskNumber + ")'></i>";
+    button += "</button>";
+
+    return button;
+}
 
 /* Task completion */
 function completeTask() {
