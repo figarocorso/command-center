@@ -4,6 +4,10 @@
     margin: 0px;
 }
 
+.newSubtask {
+    padding: 10px 0 0 10px;
+}
+
 .input-text {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;

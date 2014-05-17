@@ -114,6 +114,16 @@
         <div class="subtasks module">
             <div id="taskTitle"></div>
             <div id="subTasks" class="tasks"></div>
+            <div class="newSubtask">
+                <form name="taskTitleForm" action="javascript:addSubtask()">
+                    <label>
+                    <input type="text" class="input-text" name="newSubtask" id="newSubtask" value="">
+                    <button type="button" class="task-action" onclick="addSubtask()">
+                        <i class="icon-save"></i>
+                    </button>
+                    </label>
+                </form>
+            </div>
         </div> <!-- subtasks -->
 
         <div class="clear-left"></div>

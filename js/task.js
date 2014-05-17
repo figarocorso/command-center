@@ -54,24 +54,28 @@ function getAndPlaceSubtasks() {
 }
 
 function writeSubTasks(data) {
-    if (data == "") {
-        return;
-    }
-
     subtasksHtml = "";
     subtasksHtml += "<ul>";
     for (subtask in data) {
-        subtasksHtml += "<li>";
-        subtasksHtml += subtaskDoneIcon(parseInt(subtask)+1, data[subtask]["done"]);
-        subtasksHtml += "<span>";
-        subtasksHtml += data[subtask]["name"];
-        subtasksHtml += "</span>";
-        subtasksHtml += deleteSubtaskIcon(parseInt(subtask) + 1);
-        subtasksHtml += "</li>";
+        subtasksHtml += subtaskLiCode(parseInt(subtask)+1, data[subtask]["done"], data[subtask]["name"]);
     }
     subtasksHtml += "</ul>";
 
     $('#subTasks').html(subtasksHtml);
+}
+
+function subtaskLiCode(number, done, name) {
+    subtasksLi = "";
+
+    subtasksLi += "<li>";
+    subtasksLi += subtaskDoneIcon(number, done);
+    subtasksLi += "<span>";
+    subtasksLi += name;
+    subtasksLi += "</span>";
+    subtasksLi += deleteSubtaskIcon(number);
+    subtasksLi += "</li>";
+
+    return subtasksLi;
 }
 
 function subtaskDoneIcon(taskNumber, done) {
@@ -134,4 +138,21 @@ function deleteSubtask(taskNumber) {
     $('#subTasks li:nth-child(' + taskNumber + ')').remove();
 
     sendUpdatedSubtasks();
+}
+
+/* Adding subtask */
+function addSubtask() {
+    number = $('#subTasks ul li').length + 1;
+    done = "undone";
+    name = $('#newSubtask').val();
+
+    newSubtask = subtaskLiCode(number, done, name);
+    $('#subTasks ul').append(newSubtask);
+
+    cleanNewSubtaskInput();
+    sendUpdatedSubtasks();
+}
+
+function cleanNewSubtaskInput() {
+    $('#newSubtask').val("");
 }
