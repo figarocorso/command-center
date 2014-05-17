@@ -22,11 +22,12 @@ class Mysql extends DbConfiguration {
         $row = $this->mysqli->query("SELECT command_value FROM command_values WHERE command_key='$key'");
         $result = $row->num_rows ? $row->fetch_array() : $this->insertInitialValue($key);
 
-        return $result["command_value"];
+        return base64_decode($result["command_value"]);
     }
 
     public function setValue($key, $value) {
         $table = $this->table;
+        $value = base64_encode($value);
         $success = $this->mysqli->query("UPDATE $table SET command_value='$value' WHERE command_key='$key'");
 
         return $success;
@@ -40,7 +41,7 @@ class Mysql extends DbConfiguration {
         $value = False;
         if (array_key_exists($key, $initials)) {
             $table = $this->table;
-            $value = $initials[$key];
+            $value = base64_encode($initials[$key]);
             $this->mysqli->query("INSERT INTO $table (command_key, command_value) VALUES ('$key', '$value')");
         }
 
