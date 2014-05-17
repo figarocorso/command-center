@@ -8,6 +8,19 @@
     padding: 10px 0 0 10px;
 }
 
+#newSubtask {
+    color: #BBB;
+}
+
+#newSubtask:focus {
+    color: #444;
+}
+
+#newSubtask:hover {
+    color: #777;
+    border: 1px double #888;
+}
+
 .input-text {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 16px;

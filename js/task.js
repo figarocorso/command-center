@@ -9,6 +9,8 @@ function writeTaskTitle(data) {
 }
 
 function showInputTaskTitle(taskTitle) {
+    slideNewTaskInput();
+
     inputValue = taskTitle ? taskTitle : "";
 
     inputString = "";
@@ -44,6 +46,7 @@ function showTaskTitle(data) {
 }
 
 function setTaskTitle() {
+    slideNewTaskInput();
     taskTitle = $('#taskTitleInput').val();
     $.post( "server/tasks/tasktitle", {'taskTitle': taskTitle}, writeTaskTitle, "json");
 }
@@ -155,4 +158,8 @@ function addSubtask() {
 
 function cleanNewSubtaskInput() {
     $('#newSubtask').val("");
+}
+
+function slideNewTaskInput() {
+    $('.newSubtask').slideToggle();
 }
