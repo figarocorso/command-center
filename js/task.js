@@ -1,6 +1,6 @@
 $(document).ready(function (){
     $.get( "server/tasks/tasktitle", writeTaskTitle, "json");
-    $.get( "server/tasks/subtasks", writeSubTasks, "json");
+    getAndPlaceSubtasks();
 });
 
 /* Task title */
@@ -49,16 +49,24 @@ function setTaskTitle() {
 }
 
 /* Subtasks management */
+function getAndPlaceSubtasks() {
+    $.get( "server/tasks/subtasks", writeSubTasks, "json");
+}
+
 function writeSubTasks(data) {
+    if (data == "") {
+        return;
+    }
+
     subtasksHtml = "";
     subtasksHtml += "<ul>";
     for (subtask in data) {
         subtasksHtml += "<li>";
-        subtasksHtml += subtaskDoneIcon(subtask, data[subtask]["done"]);
+        subtasksHtml += subtaskDoneIcon(parseInt(subtask)+1, data[subtask]["done"]);
         subtasksHtml += "<span>";
         subtasksHtml += data[subtask]["name"];
         subtasksHtml += "</span>";
-        subtasksHtml += deleteSubtaskIcon(subtask);
+        subtasksHtml += deleteSubtaskIcon(parseInt(subtask) + 1);
         subtasksHtml += "</li>";
     }
     subtasksHtml += "</ul>";
@@ -67,10 +75,12 @@ function writeSubTasks(data) {
 }
 
 function subtaskDoneIcon(taskNumber, done) {
-    button = "";
+    buttonClass = (done == "done") ? "task-state" : "task-action";
+    buttonIcon = (done == "done") ? "icon-done" : "icon-undone";
 
-    button += "<button type='button' class='task-action'>";
-    button += "<i class='icon-" + done + "' onClick='completeSubtask(" + taskNumber + ")'></i>";
+    button = "";
+    button += "<button type='button' class='" + buttonClass + "' id='doneButton'>";
+    button += "<i class='" + buttonIcon + "' onClick='completeSubtask(" + taskNumber + ")'></i>";
     button += "</button>";
 
     return button;
@@ -88,6 +98,40 @@ function deleteSubtaskIcon(taskNumber) {
 
 /* Task completion */
 function completeTask() {
-    //TODO: Delete subtasks
+    $('#subTasks li').each(function() {
+        $(this).remove();
+    });
+
+    sendUpdatedSubtasks();
     $.post( "server/tasks/tasktitle", {'taskTitle': ""}, writeTaskTitle, "json");
+}
+
+function sendUpdatedSubtasks() {
+    subtasks = getSubtasksFromDOM();
+    $.post( "server/tasks/subtasks", {'subtasks': subtasks}, getAndPlaceSubtasks, "json");
+}
+
+function getSubtasksFromDOM() {
+    subtasks = new Array();
+
+    $('#subTasks li').each(function(index) {
+        done = ($(this).find('i').attr('class') == "icon-done") ? "done" : "undone";
+        name = $(this).find('span').text();
+        subtasks.push({"name": name, "done": done});
+    });
+
+    return (subtasks.length == 0) ? "" : subtasks;
+}
+
+function completeSubtask(taskNumber) {
+    $('#subTasks li:nth-child(' + taskNumber + ') > #doneButton').toggleClass("task-state task-action");
+    $('#subTasks li:nth-child(' + taskNumber + ') > #doneButton i').toggleClass("icon-done icon-undone");
+
+    sendUpdatedSubtasks();
+}
+
+function deleteSubtask(taskNumber) {
+    $('#subTasks li:nth-child(' + taskNumber + ')').remove();
+
+    sendUpdatedSubtasks();
 }

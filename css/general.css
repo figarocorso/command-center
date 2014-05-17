@@ -87,37 +87,8 @@ a, a:hover, a:visited {
 
 .icon-undone {
     background-position: -288px 0px;
-    opacity: .2;
-}
-
-.icon-undone:hover {
-    opacity: .6;
 }
 
 .icon-done {
     background-position: -288px 0px;
-    opacity: 1;
-}
-
-.icon-done:hover {
-    background-position: -288px 0px;
-    opacity: .4;
-}
-
-.task-action {
-    padding-left: 7px;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-    opacity: .4;
-    filter: alpha(opacity=20);
-    -webkit-appearance: none;
-}
-
-.task-action:hover, .task-action:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-    opacity: .6;
-    filter: alpha(opacity=60);
 }

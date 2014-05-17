@@ -51,6 +51,10 @@ class TasksController
     /* Private helper functions */
 
     private function parseSubtasks($subtasksString) {
+        if ($subtasksString == "") {
+            return "";
+        }
+
         $subtasks = explode(self::SUBTASKS_GLUE, $subtasksString);
 
         $subtasksArray = array();
@@ -65,7 +69,18 @@ class TasksController
     }
 
     private function convertSubtasksToString($subtasksArray) {
-        return implode(self::SUBTASKS_GLUE, $subtasksArray);
+        if ($subtasksArray == "") {
+            return "";
+        }
+
+        $subtasks = array();
+
+        foreach ($subtasksArray as $subtask) {
+            $done = ($subtask["done"] == "done") ? "[d]" : "[u]";
+            $subtasks[] = $done . $subtask["name"];
+        }
+
+        return implode(self::SUBTASKS_GLUE, $subtasks);
     }
 }
 ?>
