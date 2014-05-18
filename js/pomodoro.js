@@ -26,12 +26,12 @@ function endPomodoro() {
 }
 
 function showConfiguration() {
-    $('.interval-settings').show(500);
+    $('.interval-settings').slideToggle();
     $('#configurePomodoro').hide(500);
 }
 
 function hideConfiguration() {
-    $('.interval-settings').hide(500);
+    $('.interval-settings').slideToggle();
     $('#configurePomodoro').show(500);
 }
 

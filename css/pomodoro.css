@@ -27,7 +27,8 @@
 }
 
 .interval-settings {
-    height: 85px;
+    display: none;
+    height: auto;
 }
 
 .interval-settings table tr td {

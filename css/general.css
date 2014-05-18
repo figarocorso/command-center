@@ -24,7 +24,7 @@ body {
 .pomodoro {
     width: 48%;
     float: left;
-    height: 200px;
+    height: auto;
 }
 
 .subtasks {
