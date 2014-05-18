@@ -2,7 +2,7 @@ var lastNotes;
 
 $(document).ready(function (){
     getNotes();
-    window.setInterval(saveNotes, 30000);
+    window.setInterval(saveNotes, 15000);
 });
 
 function getNotes() {
@@ -34,7 +34,7 @@ function saveNotesResult(data) {
 }
 
 function saveNotes() {
-    if (notesUpdated) {
+    if (notesUpdated()) {
         $.post( "server/notes/notes", {'notes': $('#notesInput').val()}, saveNotesResult, "json");
     }
 }
