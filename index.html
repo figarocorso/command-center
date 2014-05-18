@@ -10,11 +10,13 @@
     <link href="css/pomodoro.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/menu.css" rel="stylesheet" media="all" type="text/css">
     <link href="css/tasks.css" rel="stylesheet" media="all" type="text/css">
+    <link href="css/notes.css" rel="stylesheet" media="all" type="text/css">
 
     <script type"text/javascript" src="jquery-2.1.0.min.js"></script>
     <script type"text/javascript" src="js/task.js"></script>
     <script type"text/javascript" src="js/pomodoro.js"></script>
     <script type"text/javascript" src="js/menu.js"></script>
+    <script type"text/javascript" src="js/notes.js"></script>
 </head>
 
 <body>
@@ -106,7 +108,15 @@
             </div>
         </div> <!-- pomodoro -->
         <div class="notes module">
-            These are the notes
+            <div id="notesButtons">
+                  <button type="button" class="notes-button" onClick="saveNotes()">Save</button>
+                  <button type="button" class="notes-button" onClick="selectAll()">Select All</button>
+                  <button type="button" class="notes-button" onClick="cleanNotes()">Clean</button>
+                  <div id="notesStatus"></div>
+            </div>
+            <div id="notesArea">
+                <textarea name="notes" id="notesInput"></textarea>
+            </div>
         </div>
 
         <div class="clear-left separator"></div>

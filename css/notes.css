@@ -1,0 +1,39 @@
+#notesButtons {
+    height: 5%;
+}
+
+#notesArea {
+    padding-top: 2%;
+    height: 92%;
+}
+
+#notesInput, #notesInput:hover, #notesInput:focus {
+    width: 100%;
+    height: 100%;
+    color: #444;
+    background-color: rgba(255,255,255,0.2);
+    border: 0px;
+    padding: 10px 0 0 10px
+}
+
+.notes-button {
+    display: inline-block;
+    padding: 7px 15px;
+    background: #DDD;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0);
+    border-radius: 6px;
+    -webkit-appearance;
+    opacity: .6;
+}
+
+.notes-button:hover {
+    opacity: .9;
+    border: 1px solid #666;
+}
+
+#notesStatus {
+    display: none;
+    float: right;
+    padding: 7px 10px 0 0;
+}
