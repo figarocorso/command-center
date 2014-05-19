@@ -6,15 +6,23 @@ class PomodorosController
 {
     /**
      * Does not expect any parameter and returns the current
-     * values for the pomodoro timers into a named array
+     * values for the pomodoro configuration into a named array
      */
-    public function getIntervals($request) {
+    public function getConfiguration($request) {
         $mysql = new Mysql();
 
+        $configuration = array(  "pomodoro",
+                            "minibreak",
+                            "longbreak",
+                            "pomodoro_alert",
+                            "minibreak_alert",
+                            "longbreak_alert"
+                          );
+
         $intervals = array();
-        $intervals["pomodoro"] = $mysql->getValue("pomodoro");
-        $intervals["minibreak"] = $mysql->getValue("minibreak");
-        $intervals["longbreak"] = $mysql->getValue("longbreak");
+        foreach ($configuration as $configurationKey) {
+            $intervals[$configurationKey] = $mysql->getValue($configurationKey);
+        }
 
         unset($mysql);
 

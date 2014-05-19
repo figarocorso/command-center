@@ -1,18 +1,22 @@
 var secondUpdater;
+var currentTimer;
 
 $(document).ready(function (){
-    $.get( "server/pomodoros/intervals", loadInitialData, "json");
+    currentTimer = "";
+    $.get( "server/pomodoros/configuration", loadInitialData, "json");
 });
 
 function loadInitialData(data) {
-    updatePomodoroDisplay('pomodoro', data["pomodoro"]);
-    updatePomodoroDisplay('minibreak', data["minibreak"]);
-    updatePomodoroDisplay('longbreak', data["longbreak"]);
+    updatePomodoroDisplay('pomodoro', data["pomodoro"], data["pomodoro_alert"]);
+    updatePomodoroDisplay('minibreak', data["minibreak"], data["minibreak_alert"]);
+    updatePomodoroDisplay('longbreak', data["longbreak"], data["longbreak_alert"]);
     $('#minutes').text(data["pomodoro"] - 1);
 }
 
-function startCountdown($timer) {
-    setAndStart($('#' + $timer + '-value').text() - 1);
+function startCountdown(timer) {
+    currentTimer = timer;
+
+    setAndStart($('#' + timer + '-value').text() - 1);
     showEndAndHideStarts();
 }
 
@@ -66,9 +70,15 @@ function updateTimerValue(timer, value) {
     updatePomodoroDisplay(timer, value);
 }
 
-function updatePomodoroDisplay(display, minutes) {
+function updateVideoAlert(timer) {
+    videoId = $('#' + timer + 'EndAlert').val();
+    $.post( "server/pomodoros/interval", {'timer': timer + '_alert', 'value': videoId});
+}
+
+function updatePomodoroDisplay(display, minutes, alertVideo) {
     $('#' + display + '-value').text(minutes);
     $('#' + display + 'Range').attr('value', minutes);
+    $('#' + display + 'EndAlert').val(alertVideo);
 }
 
 function decreaseSeconds() {
@@ -86,9 +96,13 @@ function updateMinutes() {
 }
 
 function pomodoroHasEnded() {
+    videoId = $('#' + currentTimer + 'EndAlert').val();
+    currentTimer = "";
+
     endPomodoro();
+
     $('#youtubeVideo').show(400);
-    $('#youtubeFrame').attr('src', 'http://www.youtube.com/embed/_uYHNWc-UCg?rel=0&autoplay=1');
+    $('#youtubeFrame').attr('src', 'http://www.youtube.com/embed/' + videoId + '?rel=0&autoplay=1');
 }
 
 

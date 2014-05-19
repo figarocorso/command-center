@@ -66,3 +66,14 @@
 #configurePomodoro {
     margin-left: 10px;
 }
+
+.alert-video {
+    width: 100% !important;
+    color: #888;
+    border: 1px double #BBB;
+    padding: 3px 10px;
+}
+
+.alert-video:hover {
+    border: 1px double #888;
+}

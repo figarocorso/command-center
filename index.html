@@ -104,6 +104,24 @@
                     <td><input type="range" name="minibreakRange" id="minibreakRange" min="0" max="10" step="1" onChange="updateTimerValue('minibreak', minibreakRange.value)"></td>
                     <td><input type="range" name="longbreakRange" id="longbreakRange" min="0" max="60" step="5" onChange="updateTimerValue('longbreak', longbreakRange.value)"></td>
                 </tr>
+                <tr>
+                    <td>Pomodoro alert:</td>
+                    <td colspan=2>
+                        <input type="text" class="alert-video" name="endPomodoroAlert" id="pomodoroEndAlert" value="" placeholder="Youtube video" onChange="updateVideoAlert('pomodoro')">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mini break alert:</td>
+                    <td colspan=2>
+                        <input type="text" class="alert-video" name="endMiniBreakAlert" id="minibreakEndAlert" value="" placeholder="Youtube video" onChange="updateVideoAlert('minibreak')">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Long break alert:</td>
+                    <td colspan=2>
+                        <input type="text" class="alert-video" name="endLongBreakAlert" id="longbreakEndAlert" value="" placeholder="Youtube video" onChange="updateVideoAlert('longbreak')">
+                    </td>
+                </tr>
                 </table>
             </div>
         </div> <!-- pomodoro -->
