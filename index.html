@@ -72,6 +72,9 @@
     <div class="clear-left separator"></div>
     <div class="container">
         <div class="pomodoro module">
+            <button type="button" class="task-action" onclick="showConfiguration()">
+                <i class="icon-configuration"></i>
+            </button>
             <div id="youtubeVideo">
                 <iframe id="youtubeFrame" src="" width="350" height="200">
                 </iframe>
@@ -87,10 +90,9 @@
                     <a href="#" id="end" style="display: none;" onClick="endPomodoro()">End</a>
                 </div>
                 <br style="clear: left;" />
-                <a href="#" id="configurePomodoro" onClick="showConfiguration()"><img style="margin:-20px 0 0 -12px;" src="img/settings.png" width="15"/></a>
             </div>
             <div class="interval-settings">
-                <table>
+                <table id="intervals-table">
                 <tr>
                     <td id="hideConfiguration" colspan=3 onClick="hideConfiguration()" onMouseOver="$('#hideConfiguration').toggleClass('over');" onMouseLeave="$('#hideConfiguration').toggleClass('over');"><img src="img/up-arrow.png" height="10px"/></td>
                 </tr>

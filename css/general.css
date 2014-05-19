@@ -92,3 +92,7 @@ a, a:hover, a:visited {
 .icon-done {
     background-position: -288px 0px;
 }
+
+.icon-configuration {
+    background-position: -455px -96px;
+}
