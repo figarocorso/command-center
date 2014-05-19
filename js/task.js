@@ -68,11 +68,12 @@ function writeSubTasks(data) {
 }
 
 function subtaskLiCode(number, done, name) {
+    subtaskClass = (done == "done") ? 'line-through' : '';
     subtasksLi = "";
 
     subtasksLi += "<li>";
     subtasksLi += subtaskDoneIcon(number, done);
-    subtasksLi += "<span>";
+    subtasksLi += "<span class='" + subtaskClass + "'>";
     subtasksLi += name;
     subtasksLi += "</span>";
     subtasksLi += deleteSubtaskIcon(number);

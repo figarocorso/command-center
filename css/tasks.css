@@ -4,6 +4,11 @@
     margin: 0px;
 }
 
+.line-through {
+    text-decoration: line-through;
+    text-shadow: none;
+}
+
 .newSubtask {
     padding: 10px 0 0 10px;
 }
