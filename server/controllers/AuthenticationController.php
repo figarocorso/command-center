@@ -12,10 +12,10 @@ class AuthenticationController extends BaseController
         $password = $mysql->getValue("password");
 
         if (isset($parameters["username"]) and isset($parameters["password"])) {
-            if ($username == $parameters["username"] and $password == $parameters["password"]) {
+            if (($username == $parameters["username"]) and ($password == $parameters["password"])) {
                 $cookie = $this->generateCookie();
                 $mysql->setValue("cookie", $cookie);
-
+                
                 return $cookie;
             }
         }
