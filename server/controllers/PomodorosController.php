@@ -2,13 +2,18 @@
 
 require_once("database/Mysql.php");
 
-class PomodorosController
+class PomodorosController extends BaseController
 {
     /**
      * Does not expect any parameter and returns the current
      * values for the pomodoro configuration into a named array
      */
     public function getConfiguration($request) {
+        $parameters = $request->parameters();
+        if (!$this->checkLogin($parameters)) {
+            return False;
+        }
+
         $mysql = new Mysql();
 
         $configuration = array(  "pomodoro",
@@ -38,17 +43,19 @@ class PomodorosController
      */
     public function postInterval($request) {
         $parameters = $request->parameters();
+        if (!$this->checkLogin($parameters)) {
+            return False;
+        }
+
         if (!isset($parameters["timer"]) or !isset($parameters["value"])) {
             return False;
         }
 
-        $success = False;
-
         $mysql = new Mysql();
-        $success = $mysql->setValue($parameters["timer"], $parameters["value"]);
+        $mysql->setValue($parameters["timer"], $parameters["value"]);
         unset($mysql);
 
-        return $success ? True : False;
+        return True;
     }
 }
 ?>

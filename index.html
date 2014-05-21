@@ -17,6 +17,7 @@
     <script type"text/javascript" src="js/pomodoro.js"></script>
     <script type"text/javascript" src="js/menu.js"></script>
     <script type"text/javascript" src="js/notes.js"></script>
+    <script type"text/javascript" src="js/auth.js"></script>
 </head>
 
 <body>
@@ -71,6 +72,16 @@
     </div>
     <div class="clear-left separator"></div>
     <div class="container">
+        <div class="module login">
+        <form name="loginForm" action="javascript:login()">
+            Username: <input type="text" class="input-text" name="username" id="usernameInput" value="" placeholder="Enter your username" />
+            <br />
+        </form>
+        <form name="loginForm" action="javascript:login()">
+            Password: <input type="password" class="input-text" name="password" id="passwordInput" value="" placeholder="Enter your password" />
+        </form>
+        </div> <!--login-->
+        <div class="clear-left separator"></div>
         <div class="pomodoro module">
             <button type="button" class="task-action" onclick="showConfiguration()">
                 <i class="icon-configuration"></i>

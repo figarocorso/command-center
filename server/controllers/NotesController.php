@@ -2,9 +2,14 @@
 
 require_once("database/Mysql.php");
 
-class NotesController
+class NotesController extends BaseController
 {
     public function getNotes($request) {
+        $parameters = $request->parameters();
+        if (!$this->checkLogin($parameters)) {
+            return False;
+        }
+
         $mysql = new Mysql();
 
         return $mysql->getValue("notes");
@@ -12,6 +17,9 @@ class NotesController
 
     public function postNotes($request) {
         $parameters = $request->parameters();
+        if (!$this->checkLogin($parameters)) {
+            return False;
+        }
 
         if (!isset($parameters['notes'])) {
             return False;

@@ -2,11 +2,16 @@
 
 require_once("database/Mysql.php");
 
-class TasksController
+class TasksController extends BaseController
 {
     const SUBTASKS_GLUE = '[separator]';
 
     public function getTasktitle($request) {
+        $parameters = $request->parameters();
+        if (!$this->checkLogin($parameters)) {
+            return False;
+        }
+
         $mysql = new Mysql();
 
         return $mysql->getValue("tasktitle");
@@ -14,6 +19,9 @@ class TasksController
 
     public function postTasktitle($request) {
         $parameters = $request->parameters();
+        if (!$this->checkLogin($parameters)) {
+            return False;
+        }
 
         if (!isset($parameters['tasktitle'])) {
             return False;
@@ -26,6 +34,11 @@ class TasksController
     }
 
     public function getSubtasks($request) {
+        $parameters = $request->parameters();
+        if (!$this->checkLogin($parameters)) {
+            return False;
+        }
+
         $mysql = new Mysql();
         $subtasks = $mysql->getValue("subtasks");
 
@@ -34,6 +47,9 @@ class TasksController
 
     public function postSubtasks($request) {
         $parameters = $request->parameters();
+        if (!$this->checkLogin($parameters)) {
+            return False;
+        }
 
         if (!isset($parameters['subtasks'])) {
             return False;

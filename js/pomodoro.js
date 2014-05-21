@@ -3,10 +3,11 @@ var currentTimer;
 
 $(document).ready(function (){
     currentTimer = "";
-    $.get( "server/pomodoros/configuration", loadInitialData, "json");
+    serverCall($.get, "pomodoros", "configuration", {}, loadInitialData);
 });
 
 function loadInitialData(data) {
+    checkRequestResponse(data);
     updatePomodoroDisplay('pomodoro', data["pomodoro"], data["pomodoro_alert"]);
     updatePomodoroDisplay('minibreak', data["minibreak"], data["minibreak_alert"]);
     updatePomodoroDisplay('longbreak', data["longbreak"], data["longbreak_alert"]);
@@ -66,13 +67,13 @@ function countDown() {
 }
 
 function updateTimerValue(timer, value) {
-    $.post( "server/pomodoros/interval", {'timer': timer, 'value': value});
+    serverCall($.post, "pomodoros", "interval", {'timer': timer, 'value': value}, doNothing);
     updatePomodoroDisplay(timer, value);
 }
 
 function updateVideoAlert(timer) {
     videoId = $('#' + timer + 'EndAlert').val();
-    $.post( "server/pomodoros/interval", {'timer': timer + '_alert', 'value': videoId});
+    serverCall($.post, "pomodoros", "interval", {'timer': timer + '_alert', 'value': videoId}, doNothing);
 }
 
 function updatePomodoroDisplay(display, minutes, alertVideo) {

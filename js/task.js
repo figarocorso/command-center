@@ -1,10 +1,11 @@
 $(document).ready(function (){
-    $.get( "server/tasks/tasktitle", writeTaskTitle, "json");
+    serverCall($.get, "tasks", "tasktitle", {}, writeTaskTitle);
     getAndPlaceSubtasks();
 });
 
 /* Task title */
 function writeTaskTitle(data) {
+    checkRequestResponse(data);
     if (data) showTaskTitle(data); else showInputTaskTitle();
 }
 
@@ -48,15 +49,17 @@ function showTaskTitle(data) {
 function setTaskTitle() {
     slideNewTaskInput();
     taskTitle = $('#taskTitleInput').val();
-    $.post( "server/tasks/tasktitle", {'taskTitle': taskTitle}, writeTaskTitle, "json");
+    serverCall($.post, "tasks", "tasktitle", {'taskTitle': taskTitle}, writeTaskTitle);
 }
 
 /* Subtasks management */
 function getAndPlaceSubtasks() {
-    $.get( "server/tasks/subtasks", writeSubTasks, "json");
+    serverCall($.get, "tasks", "subtasks", {}, writeSubTasks);
 }
 
 function writeSubTasks(data) {
+    $('.newSubtask').show();
+    checkRequestResponse(data);
     subtasksHtml = "";
     subtasksHtml += "<ul>";
     for (subtask in data) {
@@ -111,12 +114,12 @@ function completeTask() {
     });
 
     sendUpdatedSubtasks();
-    $.post( "server/tasks/tasktitle", {'taskTitle': ""}, writeTaskTitle, "json");
+    serverCall($.post, "tasks", "tasktitle", {'taskTitle': ""}, writeTaskTitle);
 }
 
 function sendUpdatedSubtasks() {
     subtasks = getSubtasksFromDOM();
-    $.post( "server/tasks/subtasks", {'subtasks': subtasks}, getAndPlaceSubtasks, "json");
+    serverCall($.post, "tasks", "subtasks", {'subtasks': subtasks}, getAndPlaceSubtasks);
 }
 
 function getSubtasksFromDOM() {

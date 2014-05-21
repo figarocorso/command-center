@@ -6,10 +6,11 @@ $(document).ready(function (){
 });
 
 function getNotes() {
-    $.get( "server/notes/notes", writeNotes, "json");
+    serverCall($.get, "notes", "notes", {}, writeNotes);
 }
 
 function writeNotes(notes) {
+    checkRequestResponse(notes);
     lastNotes = notes;
     $('#notesInput').val(notes);
 }
@@ -35,7 +36,7 @@ function saveNotesResult(data) {
 
 function saveNotes() {
     if (notesUpdated()) {
-        $.post( "server/notes/notes", {'notes': $('#notesInput').val()}, saveNotesResult, "json");
+        serverCall($.post, "notes", "notes", {'notes': $('#notesInput').val()}, saveNotesResult);
     }
 }
 
