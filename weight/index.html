@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Weight progression</title>
+	<link href="examples.css" rel="stylesheet" type="text/css">
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="jquery.flot.js"></script>
+    <script language="javascript" type="text/javascript" src="jquery.flot.time.js"></script>
+	<script type="text/javascript">
+
+	$(function() {
+        function httpGet(url) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", url, false );
+            xmlHttp.send( null );
+
+            return xmlHttp.responseText;
+        }
+
+        url = "http://diomedes.migueljulian.com/weight/weight";
+        var weight = JSON.parse(httpGet(url));
+        for (var i=0; i < weight.length; i++) {
+            weight[i][0] = new Date(weight[i][0]);
+        }
+
+        function minAndMaxWeight(weight) {
+            var min = 0;
+            var max = 0;
+
+            for (var i = 0; i < weight.length; ++i) {
+                if (min == 0) { min = weight[i][1]; }
+                if (max == 0) { max = weight[i][1]; }
+
+                if (weight[i][1] < min) { min = weight[i][1]; }
+                if (weight[i][1] > max) { max = weight[i][1]; }
+            }
+
+            return [min, max];
+        }
+
+        function weekendAreas(axes) {
+            var markings = [],
+                d = new Date(axes.xaxis.min);
+
+            // go to the first Saturday
+            d.setUTCDate(d.getUTCDate() - ((d.getUTCDay() + 1) % 7))
+            d.setUTCSeconds(0);
+            d.setUTCMinutes(0);
+            d.setUTCHours(0);
+
+            var i = d.getTime();
+
+            // when we don't set yaxis, the rectangle automatically
+            // extends to infinity upwards and downwards
+            do {
+                markings.push({ xaxis: { from: i - 12 * 60 * 60 * 1000, to: i + 2 * 18 * 60 * 60 * 1000 } });
+                i += 7 * 24 * 60 * 60 * 1000;
+            } while (i < axes.xaxis.max);
+
+            return markings;
+        }
+
+		var plot = $.plot("#placeholder", [
+			{ data: weight, label: "Weight(Kg)"},
+		], {
+			series: {
+				lines: {
+					show: true
+				},
+				points: {
+					show: true
+				}
+			},
+			grid: {
+                markings: weekendAreas,
+				hoverable: true,
+				clickable: true
+			},
+			yaxis: {
+				min: minAndMaxWeight(weight)[0] - 10,
+				max: minAndMaxWeight(weight)[1] + 10,
+			},
+			xaxis: {
+                mode: "time",
+                tickLength: 5
+			}
+		});
+
+		$("<div id='tooltip'></div>").css({
+			position: "absolute",
+			display: "none",
+			border: "1px solid #fdd",
+			padding: "2px",
+			"background-color": "#fee",
+			opacity: 0.80
+		}).appendTo("body");
+
+		$("#placeholder").bind("plothover", function (event, pos, item) {
+            if (item) {
+                var d = new Date(item.datapoint[0]);
+                var weight  = item.datapoint[1].toFixed(1);
+                html = d.getDate() + "-" + (d.getMonth()+1) + "-" + d.getFullYear();
+                html += ": ";
+                html += weight + " kg.";
+                $("#tooltip").html(html)
+                    .css({top: item.pageY+5, left: item.pageX+5})
+                    .fadeIn(200);
+            } else {
+                $("#tooltip").hide();
+            }
+		});
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+	</script>
+</head>
+<body>
+	<div id="header">
+		<h2>Weight progression</h2>
+	</div>
+
+	<div id="content">
+
+		<div class="demo-container">
+			<div id="placeholder" class="demo-placeholder"></div>
+		</div>
+
+	</div>
+
+</body>
+</html>
